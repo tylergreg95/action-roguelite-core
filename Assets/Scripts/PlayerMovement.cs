@@ -1,45 +1,47 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerStats))]
 public class PlayerMovement : MonoBehaviour
 {
     public enum MovementState
     {
-        IDLE,
-        RUNNING
+        Idle,
+        Running
     }
 
     [SerializeField] private GameObject playerModel;
 
     private MovementState currentMovementState;
-    private float movementSpeed = 5.0f; // replace with player stats once they exist
     private PlayerInput inputActions;
     private CharacterController characterController;
+    private PlayerStats playerStats;
 
     void Awake()
     {
         inputActions = new PlayerInput();
         inputActions.Gameplay.Enable();
         characterController = GetComponent<CharacterController>();
+        playerStats = GetComponent<PlayerStats>();
     }
 
     void Update()
     {
-        Vector2 movementDireciton = inputActions.Gameplay.Move.ReadValue<Vector2>();
+        Vector2 movementDirection = inputActions.Gameplay.Move.ReadValue<Vector2>();
 
-        if (movementDireciton.magnitude > 0)
+        if (movementDirection.magnitude > 0)
         {
             // movement intent exists
-            ChangeMovementState(MovementState.RUNNING);
+            ChangeMovementState(MovementState.Running);
             
             //now move the character
-            Vector3 worldSpaceDireciton = new Vector3(movementDireciton.x, 0, movementDireciton.y);
-            worldSpaceDireciton.Normalize();
-            RotatePlayerModel(worldSpaceDireciton);
-            characterController.Move(worldSpaceDireciton * movementSpeed * Time.deltaTime);
+            Vector3 worldSpaceDirection = new Vector3(movementDirection.x, 0, movementDirection.y);
+            worldSpaceDirection.Normalize();
+            RotatePlayerModel(worldSpaceDirection);
+            characterController.Move(worldSpaceDirection * playerStats.GetStat(PlayerStats.StatType.MoveSpeed) * Time.deltaTime);
         } else
         {
-            ChangeMovementState(MovementState.IDLE);
+            ChangeMovementState(MovementState.Idle);
         }
     }
 
