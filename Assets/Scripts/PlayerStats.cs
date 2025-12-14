@@ -18,6 +18,12 @@ public class PlayerStats : MonoBehaviour
     {
         public ModifierType operation;
         public float magnitude;
+
+        public StatModifier(ModifierType operation, float magnitude)
+        {
+            this.operation = operation;
+            this.magnitude = magnitude;
+        }
     }
 
     /* BASE PLAYER STATS */
