@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(PlayerStats))]
+[RequireComponent(typeof(EntityStats))]
 public class PlayerMovement : MonoBehaviour
 {
     public enum MovementState
@@ -15,14 +15,14 @@ public class PlayerMovement : MonoBehaviour
     private MovementState currentMovementState;
     private PlayerInput inputActions;
     private CharacterController characterController;
-    private PlayerStats playerStats;
+    private EntityStats entityStats;
 
     void Awake()
     {
         inputActions = new PlayerInput();
         inputActions.Gameplay.Enable();
         characterController = GetComponent<CharacterController>();
-        playerStats = GetComponent<PlayerStats>();
+        entityStats = GetComponent<EntityStats>();
     }
 
     void Update()
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 worldSpaceDirection = new Vector3(movementDirection.x, 0, movementDirection.y);
             worldSpaceDirection.Normalize();
             RotatePlayerModel(worldSpaceDirection);
-            characterController.Move(worldSpaceDirection * playerStats.GetStat(PlayerStats.StatType.MoveSpeed) * Time.deltaTime);
+            characterController.Move(worldSpaceDirection * entityStats.GetStat(EntityStats.StatType.MoveSpeed) * Time.deltaTime);
         } else
         {
             ChangeMovementState(MovementState.Idle);

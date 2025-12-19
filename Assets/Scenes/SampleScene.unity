@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216793729}
   - component: {fileID: 216793731}
-  - component: {fileID: 216793730}
+  - component: {fileID: 216793733}
   - component: {fileID: 216793732}
   m_Layer: 0
   m_Name: Player
@@ -154,19 +154,6 @@ Transform:
   - {fileID: 804152074}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &216793730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216793728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6729634a3106d5e4a964dc760f2d6966, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  playerModel: {fileID: 804152073}
 --- !u!143 &216793731
 CharacterController:
   m_ObjectHideFlags: 0
@@ -201,9 +188,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 216793728}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6729634a3106d5e4a964dc760f2d6966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  playerModel: {fileID: 804152073}
+--- !u!114 &216793733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216793728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7481d35dcc080d44b3f698a70b246c6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  m_EditorClassIdentifier: Assembly-CSharp::EntityStats
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

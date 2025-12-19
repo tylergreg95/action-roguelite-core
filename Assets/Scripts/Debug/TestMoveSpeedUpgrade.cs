@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class TestMoveSpeedUpgrade : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private EntityStats entityStats;
     PlayerInput inputActions;
     InputAction addModifierAction;
 
@@ -25,11 +25,11 @@ public class TestMoveSpeedUpgrade : MonoBehaviour
 
     void AddModifierToPlayer()
     {
-        PlayerStats.StatModifier statModifier = new PlayerStats.StatModifier(
-            PlayerStats.ModifierType.Additive,
+        EntityStats.StatModifier statModifier = new EntityStats.StatModifier(
+            EntityStats.ModifierType.Additive,
             5f
         );
 
-        playerStats.AddModifier(PlayerStats.StatType.MoveSpeed, statModifier);
+        entityStats.AddModifier(EntityStats.StatType.MoveSpeed, statModifier);
     }
 }
