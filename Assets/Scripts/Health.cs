@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
     private bool isDead;
     private EntityStats entityStats;
 
+    public event Action OnDeath;
+
     void Awake()
     {
         entityStats = GetComponent<EntityStats>();
@@ -39,6 +41,7 @@ public class Health : MonoBehaviour
         if (currentHealth == 0 && !isDead)
         {   
             isDead = true;
+            OnDeath.Invoke();
         }
     }
 
