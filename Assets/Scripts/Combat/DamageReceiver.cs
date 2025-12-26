@@ -10,7 +10,7 @@ public class DamageReceiver : MonoBehaviour
         health = GetComponent<Health>();
     }
 
-    public DamageResult RecieveDamage(DamageIntent damageIntent)
+    public DamageResult ReceiveDamage(DamageIntent damageIntent)
     {
         float healthBeforeDamageApplication = health.GetCurrentHealth();
         float intendedDamage = damageIntent.Amount;
@@ -18,8 +18,9 @@ public class DamageReceiver : MonoBehaviour
         health.ModifyCurrentHealth(-intendedDamage);
 
         float healthAfterDamageApplication = health.GetCurrentHealth();
-        
-        DamageResult result = new DamageResult(healthBeforeDamageApplication -  healthAfterDamageApplication, health.GetIsDead());
+        float appliedDamage = healthBeforeDamageApplication -  healthAfterDamageApplication;
+
+        DamageResult result = new DamageResult(appliedDamage, health.GetIsDead() && appliedDamage > 0);
 
         return result;
     }

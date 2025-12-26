@@ -227,6 +227,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DoDamage"",
+                    ""type"": ""Button"",
+                    ""id"": ""71dd202f-d8c5-420e-8b74-70ff79238eb9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -238,6 +247,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AddModifier"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4d61d95-ccc1-4669-9c3a-03ecb67c6f58"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DoDamage"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -252,6 +272,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_AddModifier = m_Debug.FindAction("AddModifier", throwIfNotFound: true);
+        m_Debug_DoDamage = m_Debug.FindAction("DoDamage", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -430,6 +451,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_AddModifier;
+    private readonly InputAction m_Debug_DoDamage;
     /// <summary>
     /// Provides access to input actions defined in input action map "Debug".
     /// </summary>
@@ -445,6 +467,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Debug/AddModifier".
         /// </summary>
         public InputAction @AddModifier => m_Wrapper.m_Debug_AddModifier;
+        /// <summary>
+        /// Provides access to the underlying input action "Debug/DoDamage".
+        /// </summary>
+        public InputAction @DoDamage => m_Wrapper.m_Debug_DoDamage;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -474,6 +500,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AddModifier.started += instance.OnAddModifier;
             @AddModifier.performed += instance.OnAddModifier;
             @AddModifier.canceled += instance.OnAddModifier;
+            @DoDamage.started += instance.OnDoDamage;
+            @DoDamage.performed += instance.OnDoDamage;
+            @DoDamage.canceled += instance.OnDoDamage;
         }
 
         /// <summary>
@@ -488,6 +517,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AddModifier.started -= instance.OnAddModifier;
             @AddModifier.performed -= instance.OnAddModifier;
             @AddModifier.canceled -= instance.OnAddModifier;
+            @DoDamage.started -= instance.OnDoDamage;
+            @DoDamage.performed -= instance.OnDoDamage;
+            @DoDamage.canceled -= instance.OnDoDamage;
         }
 
         /// <summary>
@@ -550,5 +582,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAddModifier(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DoDamage" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDoDamage(InputAction.CallbackContext context);
     }
 }
