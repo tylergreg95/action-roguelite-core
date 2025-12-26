@@ -131,6 +131,8 @@ GameObject:
   - component: {fileID: 216793731}
   - component: {fileID: 216793733}
   - component: {fileID: 216793732}
+  - component: {fileID: 216793734}
+  - component: {fileID: 216793735}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -204,6 +206,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7481d35dcc080d44b3f698a70b246c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityStats
+--- !u!114 &216793734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216793728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95d0b74e1db2d74c96745160c64b001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageReceiver
+--- !u!114 &216793735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216793728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf268d0375f49d4ca87e6058d16354c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +754,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804152073}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &807564659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807564661}
+  - component: {fileID: 807564660}
+  m_Layer: 0
+  m_Name: DebugTestDamageReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &807564660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807564659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77a57b9858f99e4d80b450fe2b3b8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestDamageReceiver
+  damageReceiver: {fileID: 1660293261}
+--- !u!4 &807564661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807564659}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,6 +1407,8 @@ GameObject:
   - component: {fileID: 1660293260}
   - component: {fileID: 1660293259}
   - component: {fileID: 1660293258}
+  - component: {fileID: 1660293261}
+  - component: {fileID: 1660293262}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -1395,6 +1468,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7481d35dcc080d44b3f698a70b246c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EntityStats
+--- !u!114 &1660293261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660293256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95d0b74e1db2d74c96745160c64b001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageReceiver
+--- !u!114 &1660293262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660293256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9516995d664c2ae488550042b7c27f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathHandler
 --- !u!1 &1947449909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,3 +1617,4 @@ SceneRoots:
   - {fileID: 1947449913}
   - {fileID: 410450051}
   - {fileID: 1660293257}
+  - {fileID: 807564661}
