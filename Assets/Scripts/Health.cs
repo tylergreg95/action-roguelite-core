@@ -42,6 +42,16 @@ public class Health : MonoBehaviour
         }
     }
 
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+
     private void InitializeToMax()
     {
         currentHealth = entityStats.GetStat(EntityStats.StatType.MaxHealth);
