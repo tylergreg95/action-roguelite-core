@@ -9,19 +9,21 @@ public class PlayerMeleeAttack : MonoBehaviour
     private InputAction meleeAttackAction;
     private float attackTimer = 0f;
     private float attackCooldown = 1.0f;
+    private PlayerState playerState;
 
     void Awake()
     {
         inputActions = new PlayerInput();
         inputActions.Gameplay.Enable();
         meleeAttackAction = inputActions.FindAction("MeleeAttack");
+        playerState = GetComponent<PlayerState>();
     }
 
     void Update()
     {
         attackTimer = Mathf.Clamp(attackTimer + Time.deltaTime, 0f, attackCooldown);
 
-        if (meleeAttackAction.WasPressedThisFrame() && attackTimer == attackCooldown)
+        if (meleeAttackAction.WasPressedThisFrame() && attackTimer == attackCooldown && playerState.GetCanAct())
         {
             StartCoroutine(Attack());
             attackTimer = 0f;
@@ -30,8 +32,10 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private IEnumerator Attack()
     {
+        playerState.SetCanAct(false);
         meleeAttackCollider.SetActive(true);
         yield return new WaitForSeconds(1.0f);
         meleeAttackCollider.SetActive(false);
+        playerState.SetCanAct(true);
     }
 }
