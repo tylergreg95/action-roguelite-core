@@ -1,9 +1,15 @@
+using System;
 using UnityEngine;
 
 public class MeleeHitBox : MonoBehaviour
 {
+    public event Action<DamageReceiver> OnDamageReceiverCollision;
+
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Hitbox collided with {other.gameObject.name}");
+        if (other.gameObject.TryGetComponent<DamageReceiver>(out DamageReceiver damageReceiver))
+        {
+            OnDamageReceiverCollision.Invoke(damageReceiver);
+        }
     }
 }
