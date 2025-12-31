@@ -12,6 +12,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private float attackTimer = 0f;
     private float attackCooldown = 1.0f;
     private PlayerState playerState;
+    private EntityStats entityStats;
 
     void Awake()
     {
@@ -19,6 +20,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         inputActions.Gameplay.Enable();
         meleeAttackAction = inputActions.FindAction("MeleeAttack");
         playerState = GetComponent<PlayerState>();
+        entityStats = GetComponent<EntityStats>();
     }
 
     void OnEnable()
@@ -54,7 +56,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     private void SendDamageIntent(DamageReceiver damageReceiver)
     {
         //placeholder raw damage number until we implement an EntityStat for it (and probably a weapon stat system)
-        DamageIntent damageIntent = new DamageIntent(5f, gameObject);
+        DamageIntent damageIntent = new DamageIntent(entityStats.GetStat(EntityStats.StatType.MeleeDamage), gameObject);
         damageReceiver.ReceiveDamage(damageIntent);
     }
 }

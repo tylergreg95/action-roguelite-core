@@ -7,7 +7,8 @@ public class EntityStats : MonoBehaviour
     public enum StatType
     {
         MoveSpeed,
-        MaxHealth
+        MaxHealth,
+        MeleeDamage
     }
 
     public enum ModifierType
@@ -33,11 +34,13 @@ public class EntityStats : MonoBehaviour
     /* BASE PLAYER STATS */
     private float movementSpeed = 5f;
     private float maxHealth = 10f;
+    private float meleeDamage = 1f;
 
 
     /* BASE STAT MODIFIERS */
     private List<StatModifier> movementSpeedModifiers = new List<StatModifier>();
     private List<StatModifier> maxHealthModifiers = new List<StatModifier>();
+    private List<StatModifier> meleeDamageModifiers = new List<StatModifier>();
 
     public float GetStat(StatType statType)
     {
@@ -47,6 +50,8 @@ public class EntityStats : MonoBehaviour
                 return CalculateFinalStat(movementSpeed, movementSpeedModifiers);
             case StatType.MaxHealth:
                 return CalculateFinalStat(maxHealth, maxHealthModifiers);
+            case StatType.MeleeDamage:
+                return CalculateFinalStat(meleeDamage, meleeDamageModifiers);
             default:
                 Debug.LogError($"Unhandled StatType: {statType}");
                 return 0f; 
@@ -64,6 +69,10 @@ public class EntityStats : MonoBehaviour
             case StatType.MaxHealth:
                 maxHealthModifiers.Add(statModifier);
                 OnModifierAltered?.Invoke(StatType.MaxHealth);
+                return;
+            case StatType.MeleeDamage:
+                meleeDamageModifiers.Add(statModifier);
+                OnModifierAltered?.Invoke(StatType.MeleeDamage);
                 return;
             default:
                 Debug.LogError($"Unhandled StatType: {statType}");
