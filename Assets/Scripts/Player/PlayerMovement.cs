@@ -27,6 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        HandleMovement();
+
+    }
+
+    private void HandleMovement()
+    {
         Vector2 movementDirection = inputActions.Gameplay.Move.ReadValue<Vector2>();
 
         if (movementDirection.magnitude > 0)
@@ -38,6 +44,12 @@ public class PlayerMovement : MonoBehaviour
             Vector3 worldSpaceDirection = new Vector3(movementDirection.x, 0, movementDirection.y);
             worldSpaceDirection.Normalize();
             RotatePlayerModel(worldSpaceDirection);
+
+            if (!characterController.isGrounded)
+            {
+                worldSpaceDirection.y = Physics.gravity.y;
+            }
+
             characterController.Move(worldSpaceDirection * entityStats.GetStat(EntityStats.StatType.MoveSpeed) * Time.deltaTime);
         } else
         {
